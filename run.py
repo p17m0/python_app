@@ -1,10 +1,19 @@
 import flet as ft
 
 
-BG_COLOR = "#16557C"
+APPBAR_BG_COLOR = "#50b8e7"
+MAIN_PAHE_BG_COLOR = "#b9e2f5"
+BG_COLOR = "#84cdee"
+
+GRADIENT_STYLE = ft.TextStyle(size=40, weight=ft.FontWeight.BOLD,
+                 foreground=ft.Paint(gradient=ft.PaintLinearGradient((100, 10), (10, 100), ["#50b8e7", "#edf7fc"])),)
 
 
 def main(page: ft.Page):
+    page.fonts = {
+        "Kalnia": "https://fonts.googleapis.com/css2?family=Kalnia&display=swap"
+    }
+
     page.title = "MoneyHoney"
     page.window_height = 700
     page.window_width = 450
@@ -21,34 +30,32 @@ def main(page: ft.Page):
     appbar = ft.AppBar(
         leading=ft.IconButton(ft.icons.MENU,
                               on_click=open_dlg),
-        title=ft.Text("Welcome",
-                      font_family="RobotoSlab",
-                      weight=ft.FontWeight.BOLD),
+        title=ft.Text("Welcome", font_family="Kalnia"),
         center_title=True,
-        bgcolor=BG_COLOR,
+        bgcolor=APPBAR_BG_COLOR,
     )
 
     main_page = ft.Container(
-                bgcolor="#16556C",
+                bgcolor=MAIN_PAHE_BG_COLOR,
                 border=ft.border.all(10, ft.colors.WHITE10),
                 content=ft.Column(
                                   [
                                     ft.Row(
-                                           [ft.Text(weight="bold",
-                                                    size=45,
+                                           [ft.Text(size=45,
+                                                    font_family="Kalnia",
                                                     spans=[
                                                         ft.TextSpan(text="MONEY",
-                                                                    style=ft.TextStyle(decoration=ft.TextDecoration.UNDERLINE),),
+                                                                    style=GRADIENT_STYLE,),
                                                             ])
                                             ],
                                            alignment="center"),
                                     ft.Row(
-                                           [ft.Text(
-                                                    weight="bold",
+                                           [ft.Text(weight="bold",
+                                                    font_family="Kalnia",
                                                     size=45,
                                                     spans=[
                                                         ft.TextSpan(text="TRANSFER",
-                                                                    style=ft.TextStyle(decoration=ft.TextDecoration.UNDERLINE),),
+                                                                    style=GRADIENT_STYLE,),
                                                             ]),
                                             ],
                                            alignment="center"),
