@@ -40,7 +40,7 @@ def main(page: ft.Page):
                 border=ft.border.all(10, ft.colors.WHITE10),
                 height=750,
                 width=450,
-                border_radius=ft.border_radius.all(5),
+                border_radius=ft.border_radius.all(50),
                 expand=True,
                 content=ft.Column(
                                   [
@@ -109,8 +109,8 @@ def main(page: ft.Page):
 
     main_page_view = ft.View(
             "/",
-            [
-                appbar,
+            appbar=appbar,
+            controls=[
                 main_page,
             ],
             bgcolor=BG_COLOR,
@@ -119,14 +119,15 @@ def main(page: ft.Page):
 
     register_page_view = ft.View(
             "/register",
-            [
-                appbar,
+            appbar=appbar,
+            controls=[
                 ft.Container(
                     bgcolor=MAIN_PAGE_BG_COLOR,
                     border=ft.border.all(10, ft.colors.WHITE10),
                     width=700,
                     height=550,
-                    border_radius=ft.border_radius.all(5),
+                    border_radius=ft.border_radius.all(50),
+                    expand=True,
                     content=ft.Column(
                         [
                             ft.Row([ft.TextField(label="login"),], alignment="center"),
@@ -148,17 +149,18 @@ def main(page: ft.Page):
 
     login_page_view = ft.View(
             "/login",
-            [
-                appbar,
+            appbar=appbar,
+            controls = [
                 ft.Container(
                     bgcolor=MAIN_PAGE_BG_COLOR,
                     border=ft.border.all(10, ft.colors.WHITE10),
                     width=700,
                     height=550,
-                    border_radius=ft.border_radius.all(5),
+                    border_radius=ft.border_radius.all(50),
+                    expand=True,
                     content=ft.Column(
                         [
-                            ft.Row([ft.TextField(label="login"),], alignment="center"),
+                            ft.Row([ft.TextField(label="login"),], alignment="center"), # type: ignore
                             ft.Row([ft.TextField(label="password", password=True),], alignment="center"),
                             ft.Row(
                                 [
@@ -177,21 +179,21 @@ def main(page: ft.Page):
 
     profile_page_view = ft.View(
             "/profile",
-            [
-                appbar,
+            appbar=appbar,
+            controls=[
                 ft.Container(
                     bgcolor=MAIN_PAGE_BG_COLOR,
                     border=ft.border.all(10, ft.colors.WHITE10),
                     width=700,
                     height=550,
-                    border_radius=ft.border_radius.all(5),
+                    border_radius=ft.border_radius.all(50),
+                    expand=True,
                     content=ft.Column(
                         [
                         ],
                         alignment="center"
                     ),
                 ),
-
             ],
             bgcolor=BG_COLOR,
         )
