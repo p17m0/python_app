@@ -2,7 +2,7 @@ import flet as ft
 
 
 APPBAR_BG_COLOR = "#50b8e7"
-MAIN_PAHE_BG_COLOR = "#b9e2f5"
+MAIN_PAGE_BG_COLOR = "#b9e2f5"
 BG_COLOR = "#84cdee"
 
 GRADIENT_STYLE = ft.TextStyle(size=40, weight=ft.FontWeight.BOLD,
@@ -36,8 +36,12 @@ def main(page: ft.Page):
     )
 
     main_page = ft.Container(
-                bgcolor=MAIN_PAHE_BG_COLOR,
+                bgcolor=MAIN_PAGE_BG_COLOR,
                 border=ft.border.all(10, ft.colors.WHITE10),
+                height=750,
+                width=450,
+                border_radius=ft.border_radius.all(5),
+                expand=True,
                 content=ft.Column(
                                   [
                                     ft.Row(
@@ -89,37 +93,128 @@ def main(page: ft.Page):
                                                            elevation=100,
                                                            on_click=lambda _: page.go("/register")), ],
                                         alignment="center"),
+                                    ft.Row(
+                                        [ft.ElevatedButton(text="LOGIN",
+                                                           width=300,
+                                                           height=50,
+                                                           bgcolor="white",
+                                                           color="black",
+                                                           elevation=100,
+                                                           on_click=lambda _: page.go("/login")), ],
+                                        alignment="center"),
                                     ],
-                                alignment="center"),
-                width=700,
-                height=550,
-                border_radius=ft.border_radius.all(5),
-    )
+                                    alignment="center"),)
 
+    # VIEWS
+
+    main_page_view = ft.View(
+            "/",
+            [
+                appbar,
+                main_page,
+            ],
+            bgcolor=BG_COLOR,
+            padding=15
+        )
+
+    register_page_view = ft.View(
+            "/register",
+            [
+                appbar,
+                ft.Container(
+                    bgcolor=MAIN_PAGE_BG_COLOR,
+                    border=ft.border.all(10, ft.colors.WHITE10),
+                    width=700,
+                    height=550,
+                    border_radius=ft.border_radius.all(5),
+                    content=ft.Column(
+                        [
+                            ft.Row([ft.TextField(label="login"),], alignment="center"),
+                            ft.Row([ft.TextField(label="password", password=True),], alignment="center"),
+                            ft.Row([ft.TextField(label="password again", password=True),], alignment="center"),
+                            ft.Row(
+                                [
+                                    ft.ElevatedButton("Go Home", on_click=lambda _: page.go("/")),
+                                ],
+                                alignment="center"
+                            ),
+                        ],
+                        alignment="center"
+                    ),
+                ),
+            ],
+            bgcolor=BG_COLOR,
+        )
+
+    login_page_view = ft.View(
+            "/login",
+            [
+                appbar,
+                ft.Container(
+                    bgcolor=MAIN_PAGE_BG_COLOR,
+                    border=ft.border.all(10, ft.colors.WHITE10),
+                    width=700,
+                    height=550,
+                    border_radius=ft.border_radius.all(5),
+                    content=ft.Column(
+                        [
+                            ft.Row([ft.TextField(label="login"),], alignment="center"),
+                            ft.Row([ft.TextField(label="password", password=True),], alignment="center"),
+                            ft.Row(
+                                [
+                                    ft.ElevatedButton("Login", on_click=lambda _: page.go("/profile")),
+                                ],
+                                alignment="center"
+                            ),
+                        ],
+                        alignment="center"
+                    ),
+                ),
+
+            ],
+            bgcolor=BG_COLOR,
+        )
+
+    profile_page_view = ft.View(
+            "/profile",
+            [
+                appbar,
+                ft.Container(
+                    bgcolor=MAIN_PAGE_BG_COLOR,
+                    border=ft.border.all(10, ft.colors.WHITE10),
+                    width=700,
+                    height=550,
+                    border_radius=ft.border_radius.all(5),
+                    content=ft.Column(
+                        [
+                        ],
+                        alignment="center"
+                    ),
+                ),
+
+            ],
+            bgcolor=BG_COLOR,
+        )
 
     def route_change(route):
         page.views.clear()
         page.views.append(
-            ft.View(
-                "/",
-                [
-                    appbar,
-                    main_page,
-                ],
-                bgcolor=BG_COLOR,
-                padding=15
-            )
+            main_page_view
         )
+        # New page - register
         if page.route == "/register":
             page.views.append(
-                ft.View(
-                    "/register",
-                    [
-                        appbar,
-                        ft.ElevatedButton("Go Home", on_click=lambda _: page.go("/")),
-                    ],
-                    bgcolor="white",
-                )
+                register_page_view
+            )
+        # New page - login
+        if page.route == "/login":
+            page.views.append(
+                login_page_view
+            )
+        # New page - profile
+        if page.route == "/profile":
+            page.views.append(
+                profile_page_view
             )
         page.update()
 
