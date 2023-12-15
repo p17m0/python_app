@@ -105,6 +105,23 @@ def main(page: ft.Page):
                                     ],
                                     alignment="center"),)
 
+    product = ft.Container(
+                    bgcolor=MAIN_PAGE_BG_COLOR,
+                    border=ft.border.all(10, ft.colors.WHITE10),
+                    width=700,
+                    height=550,
+                    border_radius=ft.border_radius.all(5),
+                    expand=True,
+                    content=ft.Column(
+                        [
+                        ],
+                        alignment=ft.MainAxisAlignment.CENTER,
+                    ),
+                )
+    products = ft.GridView(
+        expand=True, max_extent=150, child_aspect_ratio=1,
+        controls=[ *[product for i in range(50)] ])
+
     # VIEWS
 
     main_page_view = ft.View(
@@ -186,14 +203,15 @@ def main(page: ft.Page):
                     border=ft.border.all(10, ft.colors.WHITE10),
                     width=700,
                     height=550,
-                    border_radius=ft.border_radius.all(50),
+                    border_radius=ft.border_radius.all(5),
                     expand=True,
                     content=ft.Column(
                         [
                         ],
-                        alignment="center"
+                        alignment=ft.MainAxisAlignment.CENTER,
                     ),
                 ),
+                products,
             ],
             bgcolor=BG_COLOR,
         )
