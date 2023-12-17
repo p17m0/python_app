@@ -120,7 +120,7 @@ def main(page: ft.Page):
 
     product = ft.Container(
                     bgcolor=MAIN_PAGE_BG_COLOR,
-                    border=ft.border.all(10, ft.colors.WHITE10),
+                    border=ft.border.all(10, ft.colors.PINK_300),
                     width=700,
                     height=550,
                     border_radius=ft.border_radius.all(5),
@@ -211,8 +211,8 @@ def main(page: ft.Page):
             # appbar=appbar,
             controls=[
                 ft.Container(
-                    bgcolor=MAIN_PAGE_BG_COLOR,
-                    border=ft.border.all(10, ft.colors.WHITE70),
+                    bgcolor=ft.colors.PINK_100,
+                    border=ft.border.all(10, ft.colors.PINK),
                     width=700,
                     height=550,
                     border_radius=ft.border_radius.all(5),
