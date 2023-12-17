@@ -1,4 +1,4 @@
-# flet_guide_rus
+# flet_app
 
 # TODO
 
