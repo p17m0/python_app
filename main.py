@@ -1,9 +1,9 @@
 import flet as ft
 
 
-APPBAR_BG_COLOR = "#50b8e7"
-MAIN_PAGE_BG_COLOR = "#b9e2f5"
-BG_COLOR = "#84cdee"
+APPBAR_BG_COLOR = "white"
+MAIN_PAGE_BG_COLOR = "white"
+BG_COLOR = "white"
 
 GRADIENT_STYLE = ft.TextStyle(size=40, weight=ft.FontWeight.BOLD,
                  foreground=ft.Paint(gradient=ft.PaintLinearGradient((100, 10), (10, 100), ["#50b8e7", "#edf7fc"])),)
@@ -30,9 +30,22 @@ def main(page: ft.Page):
     appbar = ft.AppBar(
         leading=ft.IconButton(ft.icons.MENU,
                               on_click=open_dlg),
-        title=ft.Text("Welcome", font_family="Kalnia"),
+        # title=ft.Text("Welcome", font_family="Kalnia"),
         center_title=True,
         bgcolor=APPBAR_BG_COLOR,
+        # actions=[
+        #         ft.IconButton(ft.icons.WB_SUNNY_OUTLINED),
+        #         ft.IconButton(ft.icons.FILTER_3),
+        #         ft.PopupMenuButton(
+        #             items=[
+        #                 ft.PopupMenuItem(text="Item 1"),
+        #                 ft.PopupMenuItem(),  # divider
+        #                 ft.PopupMenuItem(
+
+        #                 ),
+        #             ]
+        #         ),
+        #     ],
     )
 
     main_page = ft.Container(
@@ -52,7 +65,7 @@ def main(page: ft.Page):
                                                                     style=GRADIENT_STYLE,),
                                                             ])
                                             ],
-                                           alignment="center"),
+                                           alignment=ft.MainAxisAlignment.CENTER),
                                     ft.Row(
                                            [ft.Text(weight="bold",
                                                     font_family="Kalnia",
@@ -62,26 +75,26 @@ def main(page: ft.Page):
                                                                     style=GRADIENT_STYLE,),
                                                             ]),
                                             ],
-                                           alignment="center"),
+                                           alignment=ft.MainAxisAlignment.CENTER),
                                     ft.Row([ft.Text(),]),
                                     ft.Row(
                                            [ft.Text(value="Lorem ipsum dolor sit amet,",
                                                     weight="bold",
                                                     size=16,),
                                             ],
-                                           alignment="center"),
+                                           alignment=ft.MainAxisAlignment.CENTER),
                                     ft.Row(
                                            [ft.Text(value="consectetur adipiscing elit,",
                                                     weight="bold",
                                                     size=16,),
                                             ],
-                                           alignment="center"),
+                                           alignment=ft.MainAxisAlignment.CENTER),
                                     ft.Row(
                                            [ft.Text(value=" sed do eiusmod tempor incididunt u",
                                                     weight="bold",
                                                     size=16,),
                                             ],
-                                           alignment="center"),
+                                           alignment=ft.MainAxisAlignment.CENTER),
                                     ft.Row([ft.Text(),]),
                                     ft.Row([ft.Text(),]),
                                     ft.Row(
@@ -89,21 +102,21 @@ def main(page: ft.Page):
                                                            width=300,
                                                            height=50,
                                                            bgcolor="white",
-                                                           color="black",
+                                                           color="grey",
                                                            elevation=100,
                                                            on_click=lambda _: page.go("/register")), ],
-                                        alignment="center"),
+                                        alignment=ft.MainAxisAlignment.CENTER),
                                     ft.Row(
                                         [ft.ElevatedButton(text="LOGIN",
                                                            width=300,
                                                            height=50,
                                                            bgcolor="white",
-                                                           color="black",
+                                                           color="grey",
                                                            elevation=100,
                                                            on_click=lambda _: page.go("/login")), ],
-                                        alignment="center"),
+                                        alignment=ft.MainAxisAlignment.CENTER),
                                     ],
-                                    alignment="center"),)
+                                    alignment=ft.MainAxisAlignment.CENTER),)
 
     product = ft.Container(
                     bgcolor=MAIN_PAGE_BG_COLOR,
@@ -126,7 +139,7 @@ def main(page: ft.Page):
 
     main_page_view = ft.View(
             "/",
-            appbar=appbar,
+            # appbar=appbar,
             controls=[
                 main_page,
             ],
@@ -136,7 +149,7 @@ def main(page: ft.Page):
 
     register_page_view = ft.View(
             "/register",
-            appbar=appbar,
+            # appbar=appbar,
             controls=[
                 ft.Container(
                     bgcolor=MAIN_PAGE_BG_COLOR,
@@ -147,17 +160,17 @@ def main(page: ft.Page):
                     expand=True,
                     content=ft.Column(
                         [
-                            ft.Row([ft.TextField(label="login"),], alignment="center"),
-                            ft.Row([ft.TextField(label="password", password=True),], alignment="center"),
-                            ft.Row([ft.TextField(label="password again", password=True),], alignment="center"),
+                            ft.Row([ft.TextField(label="login"),], alignment=ft.MainAxisAlignment.CENTER),
+                            ft.Row([ft.TextField(label="password", password=True),], alignment=ft.MainAxisAlignment.CENTER),
+                            ft.Row([ft.TextField(label="password again", password=True),], alignment=ft.MainAxisAlignment.CENTER),
                             ft.Row(
                                 [
                                     ft.ElevatedButton("Go Home", on_click=lambda _: page.go("/")),
                                 ],
-                                alignment="center"
+                                alignment=ft.MainAxisAlignment.CENTER
                             ),
                         ],
-                        alignment="center"
+                        alignment=ft.MainAxisAlignment.CENTER
                     ),
                 ),
             ],
@@ -166,7 +179,7 @@ def main(page: ft.Page):
 
     login_page_view = ft.View(
             "/login",
-            appbar=appbar,
+            # appbar=appbar,
             controls = [
                 ft.Container(
                     bgcolor=MAIN_PAGE_BG_COLOR,
@@ -178,29 +191,28 @@ def main(page: ft.Page):
                     content=ft.Column(
                         [
                             ft.Row([ft.TextField(label="login"),], alignment="center"), # type: ignore
-                            ft.Row([ft.TextField(label="password", password=True),], alignment="center"),
+                            ft.Row([ft.TextField(label="password", password=True),], alignment=ft.MainAxisAlignment.CENTER),
                             ft.Row(
                                 [
                                     ft.ElevatedButton("Login", on_click=lambda _: page.go("/profile")),
                                 ],
-                                alignment="center"
+                                alignment=ft.MainAxisAlignment.CENTER,
                             ),
                         ],
-                        alignment="center"
+                        alignment=ft.MainAxisAlignment.CENTER,
                     ),
                 ),
-
             ],
             bgcolor=BG_COLOR,
         )
 
     profile_page_view = ft.View(
             "/profile",
-            appbar=appbar,
+            # appbar=appbar,
             controls=[
                 ft.Container(
                     bgcolor=MAIN_PAGE_BG_COLOR,
-                    border=ft.border.all(10, ft.colors.WHITE10),
+                    border=ft.border.all(10, ft.colors.WHITE70),
                     width=700,
                     height=550,
                     border_radius=ft.border_radius.all(5),
